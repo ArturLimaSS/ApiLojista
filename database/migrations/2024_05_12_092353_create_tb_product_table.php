@@ -11,24 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tb_produto', function (Blueprint $table) {
+        Schema::create('product', function (Blueprint $table) {
             $table->id();
-            $table->string('sku_produto');
-            $table->string('sku_fabricante');
-            $table->string('nome_fabricante');
-            $table->string('codigo_fabricante');
-            $table->text('descricao_produto');
-            $table->double('peso_produt');
-            $table->double('peso_corrente');
-            $table->double('peso_pedras');
-            $table->string('cravacao_quantidade');
-            $table->double('valor_montagens');
-            $table->double('valor_rodio');
-            $table->double('valor_mao_de_obra');
-            $table->double("custos_adicionais");
-            $table->double("margem_lucro");
-            $table->double("valor_nf");
-            $table->enum("status", ["Ativo", "Inativo"]);
+            $table->string('sku_product');
+            $table->string('sku_factory');
+            $table->string('factory_name');
+            $table->string('factory_code');
+            $table->text('product_description');
+            $table->double('product_weight');
+            $table->double('chain_weight');
+            $table->double('stone_weight');
+            $table->string('nailing_amount');
+            $table->double('assembly_value');
+            $table->double('rhodium_value');
+            $table->double('work_value');
+            $table->double("aditional_costs");
+            $table->double("profit_margin");
+            $table->double("nf_value");
+            $table->enum("status", ["0", "1"]);
             $table->timestamps();
         });
     }
@@ -38,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tb_product');
+        Schema::dropIfExists('product');
     }
 };
