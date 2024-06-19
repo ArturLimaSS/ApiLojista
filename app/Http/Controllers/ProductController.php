@@ -15,7 +15,15 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $product = ProductModel::create($request->all());
-        return response()->json($product);
+        try {
+            ProductModel::create($request->all());
+            return response()->json([
+                "message" => "Produto cadastrado com sucesso!"
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                "message" => $e->getMessage()
+            ], 500);
+        }
     }
 }

@@ -43,16 +43,26 @@ class AuthController extends Controller
     public function Register(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'nome' => 'required|string',
-            'cpf' => 'required|string',
-            'telefone' => 'required|string',
-            'rua' => 'required|string',
-            'cidade' => 'required|string',
-            'uf' => 'required|string',
-            'cep' => 'required|string',
-
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
+            'document' => ['required', 'string', 'max:255'],
+            'fantasy_name' => ['required', 'string'],
+            'company_name' => ['required', 'string'],
+            'representative_name' => ['required', 'string']
         ]);
+
+        try {
+            $user = new User($request->all());
+            $user->password =  Hash::make($request->password);
+            $user->save();
+            return response()->json([
+                'message' => 'Usuário cadastrado com sucesso!'
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 }

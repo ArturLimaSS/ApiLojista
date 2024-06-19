@@ -8,23 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class ProductModel extends Model
 {
     use HasFactory;
-    protected $table = 'tb_produto';
+    protected $table = 'product';
     protected $fillable = [
-        'sku_produto',
-        'sku_fabricante',
-        'nome_fabricante',
-        'codigo_fabricante',
-        'descricao_produto',
-        'peso_produt',
-        'peso_corrente',
-        'peso_pedras',
-        'cravacao_quantidade',
-        'valor_montagens',
-        'valor_rodio',
-        'valor_mao_de_obra',
-        "custos_adicionais",
-        "margem_lucro",
-        "valor_nf",
-        "status"
+        'sku_product',
+        'sku_factory',
+        'factory_name',
+        'factory_code',
+        'product_description',
+        'product_weight',
+        'chain_weight',
+        'stone_weight',
+        'nailing_amount',
+        'assembly_value',
+        'rhodium_value',
+        'work_value',
+        'aditional_costs',
+        'profit_margin',
+        'nf_value',
+        'status',
+        'created_at',
+        'updated_at'
     ];
 }
