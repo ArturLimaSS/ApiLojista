@@ -32,7 +32,7 @@ class AuthController extends Controller
 
     public function Logout(Request $request)
     {
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('id', auth()->user()->id)->first();
         $user->tokens()->delete();
         return response()->json([
             'user' => $user,
@@ -64,5 +64,12 @@ class AuthController extends Controller
                 'message' => $e->getMessage()
             ], 500);
         }
+    }
+
+    public function Check()
+    {
+        return response()->json([
+            "user" => auth()->user()
+        ], 200);
     }
 }
